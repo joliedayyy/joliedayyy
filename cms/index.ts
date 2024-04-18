@@ -63,7 +63,7 @@ window.fsAttributes.push([
  */
 const fetchProducts = async () => {
   try {
-    const response = await fetch('https://fakestoreapi.com/products');
+    const response = await fetch('https://designmanager.loominous.com/items/Designs');
     const data: Product[] = await response.json();
 
     return data;
@@ -84,16 +84,16 @@ const createItem = (product: Product, templateElement: HTMLDivElement) => {
   const newItem = templateElement.cloneNode(true) as HTMLDivElement;
 
   // Query inner elements
-  const image = newItem.querySelector<HTMLImageElement>('[data-element="image"]');
-  const title = newItem.querySelector<HTMLHeadingElement>('[data-element="title"]');
+  const main_photo = newItem.querySelector<HTMLImageElement>('[data-element="main_photo"]');
+  const name = newItem.querySelector<HTMLHeadingElement>('[data-element="name"]');
   const category = newItem.querySelector<HTMLDivElement>('[data-element="category"]');
-  const description = newItem.querySelector<HTMLParagraphElement>('[data-element="description"]');
+  const notes = newItem.querySelector<HTMLParagraphElement>('[data-element="notes"]');
 
   // Populate inner elements
-  if (image) image.src = product.image;
-  if (title) title.textContent = product.title;
+  if (main_photo) main_photo.src = product.main_photo;
+  if (name) name.textContent = name.title;
   if (category) category.textContent = product.category;
-  if (description) description.textContent = product.description;
+  if (notes) notes.textContent = notes.description;
 
   return newItem;
 };
