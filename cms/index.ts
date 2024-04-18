@@ -91,9 +91,9 @@ const createItem = (product: Product, templateElement: HTMLDivElement) => {
 
   // Populate inner elements
   if (main_photo) main_photo.src = product.main_photo;
-  if (name) name.textContent = name.title;
+  if (name) name.textContent = name.name;
   if (category) category.textContent = product.category;
-  if (notes) notes.textContent = notes.description;
+  if (notes) notes.textContent = notes.notes;
 
   return newItem;
 };
