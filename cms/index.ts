@@ -6,13 +6,10 @@ import type { Product } from './types';
  */
 window.fsAttributes = window.fsAttributes || [];
 window.fsAttributes.push([
-  'cmsfilter',
-  async (filtersInstances: CMSFilters[]) => {
-    // Get the filters instance
-    const [filtersInstance] = filtersInstances;
-
+  'cmsload',
+  (filtersInstances: CMSList[]) => {
     // Get the list instance
-    const { listInstance } = filtersInstance;
+    const [listInstance] = listInstances;
 
     // Save a copy of the template
     const [firstItem] = listInstance.items;
@@ -58,12 +55,12 @@ window.fsAttributes.push([
 ]);
 
 /**
- * Fetches fake products from Fake Store API.
+ * Fetches products from API.
  * @returns An array of {@link Product}.
  */
 const fetchProducts = async () => {
   try {
-    const response = await fetch('https://fakestoreapi.com/products');
+    const response = await fetch('https://designmanager.loominous.com/items/Designs');
     const data: Product[] = await response.json();
 
     return data;
@@ -84,13 +81,13 @@ const createItem = (product: Product, templateElement: HTMLDivElement) => {
   const newItem = templateElement.cloneNode(true) as HTMLDivElement;
 
   // Query inner elements
-  const image = newItem.querySelector<HTMLImageElement>('[data-element="image"]');
-  const title = newItem.querySelector<HTMLHeadingElement>('[data-element="title"]');
+  const main_photo = newItem.querySelector<HTMLImageElement>('[data-element="main_photo"]');
+  const name = newItem.querySelector<HTMLHeadingElement>('[data-element="name"]');
   const category = newItem.querySelector<HTMLDivElement>('[data-element="category"]');
-  const description = newItem.querySelector<HTMLParagraphElement>('[data-element="description"]');
+  const notes = newItem.querySelector<HTMLParagraphElement>('[data-element="notes"]');
 
   // Populate inner elements
-  if (image) image.src = product.image;
+  if (main_photo) image.src = product.image;
   if (title) title.textContent = product.title;
   if (category) category.textContent = product.category;
   if (description) description.textContent = product.description;
