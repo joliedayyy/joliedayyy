@@ -1,5 +1,5 @@
 import type { CMSFilters } from '../../types/CMSFilters';
-import type { Product } from './types';
+import type { Product } from './types/Products';
 
 /**
  * Populate CMS Data from an external API.
