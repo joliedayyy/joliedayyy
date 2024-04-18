@@ -1,21 +1,15 @@
 export interface Product {
   id: number;
-  title: string;
+  name: string;
   price: number;
-  description: string;
+  notes: string;
   category: Category;
-  image: string;
-  rating: Rating;
+  main_photo: string;
 }
 
 const enum Category {
-  Electronics = 'electronics',
-  Jewelery = 'jewelery',
-  MenSClothing = "men's clothing",
-  WomenSClothing = "women's clothing",
-}
-
-interface Rating {
-  rate: number;
-  count: number;
+  Jeans = 'jeans',
+  Jacket = 'jacket',
+  Newcategory = "new category",
+  Polo = "polo",
 }
