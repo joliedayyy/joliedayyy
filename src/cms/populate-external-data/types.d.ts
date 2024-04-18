@@ -1,43 +1,21 @@
-import type { CMSFilters } from './CMSFilters';
-import type { CMSList } from './CMSList';
-
-/**
- * Window object.
- */
-declare global {
-  interface Window {
-    fsAttributes: FsAttributes;
-    FsAttributes: FsAttributes;
-  }
+export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: Category;
+  image: string;
+  rating: Rating;
 }
 
-type FsAttributesCallback =
-  | [
-      'cmsload' | 'cmsnest' | 'cmscombine' | 'cmsprevnext' | 'cmsslider' | 'cmssort' | 'cmstabs',
-      (value: CMSList[]) => void
-    ]
-  | ['cmsfilter', (value: CMSFilters[]) => void];
-
-type FsAttributesBase = {
-  push: (...args: FsAttributesCallback[]) => void;
-
-  cms: {
-    coreVersion?: string;
-    listElements?: HTMLDivElement[];
-    listInstances?: CMSList[];
-    filtersInstances?: CMSFilters[];
-  };
-};
-
-interface FsAttributeInit<T = unknown> {
-  version?: string;
-  init?: () => T | Promise<T>;
-  loading?: Promise<T>;
-  resolve?: (value: T) => void;
+const enum Category {
+  Electronics = 'electronics',
+  Jewelery = 'jewelery',
+  MenSClothing = "men's clothing",
+  WomenSClothing = "women's clothing",
 }
 
-type FsAttributesInit = {
-  [key: string]: FsAttributeInit;
-};
-
-type FsAttributes = FsAttributesBase & FsAttributesInit;
+interface Rating {
+  rate: number;
+  count: number;
+}
